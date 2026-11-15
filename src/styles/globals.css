@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --accent: 210 100% 50%;
+  }
+  
+  body {
+    overflow-x: clip; /* safety net against stray horizontal scroll on mobile */
+    @apply bg-white text-neutral-900;
+    font-family: var(--font-barlow), "Barlow", system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-neutral-800 via-neutral-600 to-[#05080c] bg-clip-text text-transparent;
+  }
+  
+  .accent-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+  
+  .card-minimal {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+  }
+  
+  .btn-primary {
+    @apply px-8 py-3 bg-[#05080c] text-white font-medium hover:bg-neutral-800 transition-all duration-300 inline-flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply px-8 py-3 border-2 border-neutral-900 text-neutral-900 font-medium hover:bg-[#05080c] hover:text-white transition-all duration-300 inline-flex items-center justify-center;
+  }
+  
+  .heading-xl {
+    @apply text-4xl md:text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-light tracking-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl md:text-3xl lg:text-4xl font-light tracking-tight;
+  }
+}
+
+::selection {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Leaflet map labels (Global Operations) */
+.ush-map-label {
+  background: rgba(5, 8, 12, 0.85);
+  border: 1px solid rgba(157, 176, 196, 0.5);
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  box-shadow: none;
+}
+.ush-map-label::before { display: none; }
+.leaflet-container { font-family: inherit; background: #05080c; }
+
+/* Turns standard OSM tiles into a muted dark basemap (tile pane only; markers stay crisp) */
+.ush-dark-tiles .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(200deg) grayscale(0.7) brightness(0.85) contrast(0.95);
+}
+
+/* Long French words: wrap and hyphenate headings instead of overflowing small screens */
+h1, h2, h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}

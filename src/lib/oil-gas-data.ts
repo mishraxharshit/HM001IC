@@ -1,0 +1,143 @@
+import type { DivisionData } from '@/components/DivisionPage'
+
+export const OIL_GAS: DivisionData = {
+  hero: [
+    { index: '01', tag: 'Approvisionnement', title: 'Sécuriser l’énergie des nations.', sub: 'Pétrole brut, produits raffinés, GNL et gaz naturel : des flux d’hydrocarbures sécurisés, de la source jusqu’au terminal de livraison.', video: '/media/energy/aerial-refinery.mp4', poster: '/media/energy/aerial-refinery.jpg' },
+    { index: '02', tag: 'Logistique', title: 'Du puits au terminal.', sub: 'Affrètement, stockage et transport maritime, coordonnés avec la protection physique des corridors critiques.', video: '/media/energy/tanker-kb.mp4', poster: '/photos/energy/lng-tanker.jpg' },
+    { index: '03', tag: 'Conformité', title: 'Des flux traçables, des contreparties vérifiées.', sub: 'Vérification des contreparties, respect des régimes de sanctions et inspection indépendante de chaque cargaison.', video: '/media/energy/night-valve.mp4', poster: '/media/energy/night-valve.jpg' },
+  ],
+  heroCta: [
+    { label: 'Discuter d’un approvisionnement', href: '/contact' },
+    { label: 'Voir nos offres', href: '#offers' },
+  ],
+  slides: [
+    {
+      image: '/photos/energy/pumpjack.jpg',
+      category: 'Pétrole brut',
+      title: 'Approvisionnement en pétrole brut',
+      stat: 'Long terme',
+      statLabel: 'Contrats d’enlèvement et ventes spot',
+      description: 'Accès direct à des bruts légers et lourds, doux et acides, auprès de producteurs vérifiés. Nous structurons des contrats d’enlèvement pluriannuels et des cargaisons ponctuelles pour les États, les raffineurs et les industriels.',
+    },
+    {
+      image: '/photos/energy/night-chimney.jpg',
+      category: 'Produits raffinés',
+      title: 'Diesel, essence, carburéacteur et fioul',
+      stat: 'Multi-origines',
+      statLabel: 'Plusieurs sources pour limiter la dépendance',
+      description: 'Approvisionnement en produits pétroliers conformes aux spécifications du client, avec plusieurs origines possibles pour réduire le risque de rupture. Chaque cargaison est contrôlée avant chargement et à la livraison.',
+    },
+    {
+      image: '/photos/energy/lng-tanker.jpg',
+      category: 'GNL et gaz naturel',
+      title: 'Gaz naturel liquéfié et gaz de gazoduc',
+      stat: 'GNL · Gazoduc',
+      statLabel: 'Contrats à long terme et marché spot',
+      description: 'Contrats d’approvisionnement en GNL et en gaz naturel pour les producteurs d’électricité, les réseaux nationaux et les industriels. Accès à la capacité de régazéification par des terminaux partenaires.',
+    },
+    {
+      image: '/photos/energy/storage-tanks.jpg',
+      category: 'Stockage et logistique',
+      title: 'Terminaux, affrètement et transport sécurisé',
+      stat: 'De bout en bout',
+      statLabel: 'Du chargement à la livraison',
+      description: 'Réservation de capacité de stockage, affrètement de navires-citernes et suivi des cargaisons en temps réel. La protection des sites, des convois et des passages maritimes critiques est assurée avec Fortress Defense.',
+    },
+  ],
+  offersTag: 'Nos offres',
+  offersTitle: 'Produits et modalités commerciales',
+  offers: [
+    {
+      tag: 'Pétrole brut',
+      name: 'Pétrole brut : contrats et cargaisons',
+      desc: 'Fourniture de brut pour raffineries et programmes nationaux, sous contrat-cadre ou par cargaison ponctuelle, avec contreparties vérifiées.',
+      specs: [
+        { label: 'Qualités', val: 'Légers, lourds, doux, acides' },
+        { label: 'Modalités de livraison', val: 'FOB, CIF, DAP (Incoterms 2020)' },
+        { label: 'Format', val: 'Cargaison ou contrat-cadre' },
+        { label: 'Paiement', val: 'Crédit documentaire (UCP 600)' },
+      ],
+      image: '/photos/energy/rig-sunset.jpg',
+    },
+    {
+      tag: 'Produits raffinés',
+      name: 'Produits pétroliers raffinés',
+      desc: 'Carburants et combustibles livrés selon les spécifications techniques du client, avec inspection indépendante au chargement et au déchargement.',
+      specs: [
+        { label: 'Produits', val: 'Diesel, essence, carburéacteur, fioul' },
+        { label: 'Spécifications', val: 'Normes ASTM et EN' },
+        { label: 'Inspection', val: 'Inspecteur indépendant agréé' },
+        { label: 'Livraison', val: 'Navire, rail, camion-citerne' },
+      ],
+      image: '/photos/energy/blue-dusk-refinery.jpg',
+    },
+    {
+      tag: 'GNL et gaz',
+      name: 'GNL et gaz naturel',
+      desc: 'Approvisionnement en gaz naturel liquéfié et en gaz de gazoduc pour la production d’électricité, l’industrie et les réseaux de distribution.',
+      specs: [
+        { label: 'Formes', val: 'GNL, gaz de gazoduc' },
+        { label: 'Contrats', val: 'Long terme et spot' },
+        { label: 'Prix', val: 'Indices de référence du marché' },
+        { label: 'Régazéification', val: 'Terminaux partenaires' },
+      ],
+      image: '/photos/energy/yellow-pipes.jpg',
+    },
+    {
+      tag: 'Logistique',
+      name: 'Stockage, affrètement et suivi',
+      desc: 'Coordination complète de la chaîne logistique : capacité de stockage, navires-citernes, documents d’expédition et suivi des cargaisons.',
+      specs: [
+        { label: 'Stockage', val: 'Terminaux et cuves de tiers' },
+        { label: 'Affrètement', val: 'Au voyage ou à temps' },
+        { label: 'Suivi', val: 'Cargaisons suivies en temps réel' },
+        { label: 'Protection', val: 'Escorte et sécurité par Fortress' },
+      ],
+      image: '/photos/energy/tank-farm.jpg',
+    },
+  ],
+  film: { video: '/media/energy/rig-kb.mp4', poster: '/photos/energy/rig-sunset.jpg', eyebrow: 'En opération', title: 'L’énergie livrée, sans rupture.' },
+  controlsTag: 'Contrôle et conformité',
+  controlsTitle: 'Quatre contrôles derrière chaque cargaison.',
+  controls: [
+    {
+      name: 'Vérification des contreparties',
+      desc: 'Chaque vendeur, acheteur et intermédiaire fait l’objet d’une vérification d’identité, de propriété effective et de réputation avant toute transaction.',
+      image: '/photos/energy/refinery-workers.jpg',
+    },
+    {
+      name: 'Inspection indépendante',
+      desc: 'Des inspecteurs indépendants contrôlent la quantité et la qualité au chargement comme au déchargement. Les certificats accompagnent chaque livraison.',
+      image: '/photos/energy/teal-pipes.jpg',
+    },
+    {
+      name: 'Traçabilité des cargaisons',
+      desc: 'De l’origine à la livraison, chaque lot est documenté et suivi, ce qui garantit une provenance claire et un parcours vérifiable.',
+      image: '/photos/energy/night-refinery.jpg',
+    },
+    {
+      name: 'Maîtrise des risques',
+      desc: 'Évaluation des risques politiques, maritimes et de prix, avec assurance de la cargaison et plans de repli sur d’autres routes ou d’autres origines.',
+      image: '/photos/energy/flare-dusk.jpg',
+    },
+  ],
+  galleryTag: 'En images',
+  galleryTitle: 'L’énergie sur le terrain.',
+  gallery: [
+    { src: '/photos/energy/refinery-hills.jpg', alt: 'Raffinerie en bord de mer et sphères de stockage de gaz' },
+    { src: '/photos/energy/flare-day.jpg', alt: 'Torchère de raffinerie' },
+    { src: '/photos/energy/welder.jpg', alt: 'Intervention de maintenance sur une plateforme' },
+    { src: '/photos/energy/dusk-trucks.jpg', alt: 'Camions-citernes sur un site de raffinage' },
+    { src: '/photos/energy/engineers.jpg', alt: 'Techniciens en maintenance d’un compresseur' },
+  ],
+  standardsTag: 'Référentiels appliqués',
+  standards: [
+    { code: 'KYC / LCB-FT', label: 'Connaissance client et lutte contre le blanchiment' },
+    { code: 'Sanctions', label: 'Contrôle des listes UE, ONU et OFAC' },
+    { code: 'Incoterms 2020', label: 'Conditions internationales de livraison' },
+    { code: 'UCP 600', label: 'Règles relatives aux crédits documentaires' },
+    { code: 'ISO 28000', label: 'Sécurité de la chaîne d’approvisionnement' },
+  ],
+  ctaTitle: 'Sécurisez votre approvisionnement énergétique.',
+  ctaLabel: 'Discuter d’un approvisionnement',
+}
