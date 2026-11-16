@@ -117,3 +117,8 @@ h1, h2, h3 {
   overflow-wrap: break-word;
   hyphens: auto;
 }
+
+/* SmartVideo placeholder: a calm dark panel with a slow sheen, shown until the footage is playing. */
+.smartvideo-sheen { background: linear-gradient(115deg, #05080c 0%, #0b1118 45%, #05080c 100%); background-size: 200% 100%; animation: smartvideo-sheen 4s ease-in-out infinite alternate; }
+@keyframes smartvideo-sheen { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@media (prefers-reduced-motion: reduce) { .smartvideo-sheen { animation: none; } }

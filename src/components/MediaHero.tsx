@@ -2,21 +2,33 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import SmartVideo from '@/components/SmartVideo'
 
-export type HeroSlide = { index: string; tag: string; title: string; sub: string; video: string; poster: string }
+export type HeroSlide = { index: string; tag: string; title: string; sub: string; video: string; poster?: string }
 
 // Chaptered cinematic hero: cycles the division's own footage.
 export default function MediaHero({ slides, cta = [{ label: 'Demander un devis', href: '/contact' }] }: { slides: HeroSlide[]; cta?: { label: string; href: string }[] }) {
   const [i, setI] = useState(0)
-  useEffect(() => { const t = setInterval(() => setI(v => (v + 1) % slides.length), 7000); return () => clearInterval(t) }, [slides.length])
+  const [ready, setReady] = useState(false)
+  const [prefetch, setPrefetch] = useState(false)
+  useEffect(() => { setReady(false) }, [i])
+  // Slide timer starts only when this slide's footage is playing, so text and video always change together.
+  useEffect(() => { if (!ready) return; const t = setTimeout(() => setI(v => (v + 1) % slides.length), 7000); return () => clearTimeout(t) }, [ready, i, slides.length])
+  useEffect(() => {
+    const c = (navigator as any).connection
+    const slow = c && (c.saveData || /2g|3g/.test(c.effectiveType || ''))
+    if (!ready || slow || window.matchMedia('(max-width: 1023px)').matches) return
+    setPrefetch(true)
+  }, [ready])
   const s = slides[i]
   return (
     <section className="relative flex min-h-screen items-end overflow-hidden bg-black text-white">
       <AnimatePresence>
-        <motion.video key={s.video} src={s.video} ref={(el: HTMLVideoElement | null) => { if (el) el.play?.().catch(() => {}) }} autoPlay muted loop playsInline preload="auto"
-          initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }}
-          className="absolute inset-0 h-full w-full object-cover" />
+        <motion.div key={s.video} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="absolute inset-0">
+          <SmartVideo src={s.video} opacity={0.6} onReady={() => setReady(true)} />
+        </motion.div>
       </AnimatePresence>
+      {prefetch && <video src={slides[(i + 1) % slides.length].video} preload="auto" muted playsInline tabIndex={-1} aria-hidden="true" className="hidden" />}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/50" />
       <div className="relative z-10 mx-auto w-full max-w-[1360px] px-6 pb-36 pt-40 lg:px-14">
         <AnimatePresence mode="wait">
@@ -34,7 +46,7 @@ export default function MediaHero({ slides, cta = [{ label: 'Demander un devis',
         {slides.map((x, j) => (
           <button key={x.index} onClick={() => setI(j)} className={`relative pt-3 text-left text-[10px] uppercase tracking-[0.16em] ${j === i ? 'text-white' : 'text-neutral-400'}`}>
             <span className="absolute left-0 right-0 top-0 h-[2px] bg-white/25" />
-            {j === i && <motion.span key={i} className="absolute left-0 top-0 h-[2px] bg-[#9db0c4]" initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 7, ease: 'linear' }} />}
+            {j === i && ready && <motion.span key={i} className="absolute left-0 top-0 h-[2px] bg-[#9db0c4]" initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 7, ease: 'linear' }} />}
             <span className="hidden sm:inline">{x.index} {x.tag}</span><span className="sm:hidden">{x.index}</span>
           </button>
         ))}

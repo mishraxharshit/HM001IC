@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useCallback, useRef, type KeyboardEvent, type FocusEvent } from 'react'
 import { motion, AnimatePresence, MotionConfig, animate, useReducedMotion } from 'framer-motion'
+import SmartVideo from '@/components/SmartVideo'
 
 const SLIDE_DURATION = 8 // seconds
 
 interface Slide {
   video: string
-  poster: string // shown instantly while the video downloads (no black box on slow mobile)
+  poster: string // legacy field, no longer rendered
   category: string
   title: string
   stat: string
@@ -126,6 +127,8 @@ export default function SplitScreenCarousel() {
   const reduced = useReducedMotion() ?? false
   const sectionRef = useRef<HTMLElement>(null)
   const [canPrefetch, setCanPrefetch] = useState(false)
+  const [ready, setReady] = useState(false)
+  useEffect(() => { setReady(false) }, [current])
 
   useEffect(() => {
     const c = (navigator as any).connection
@@ -149,7 +152,7 @@ export default function SplitScreenCarousel() {
     return () => io.disconnect()
   }, [])
 
-  const paused = manualPause || hover || !inView
+  const paused = manualPause || hover || !inView || !ready
   const autoplay = !reduced // reduced motion: auto-advance band, user khud chalaye
   const s = slides[current]
   const nextSlide = slides[(current + 1) % n]
@@ -289,26 +292,17 @@ export default function SplitScreenCarousel() {
           className="relative h-[55svh] overflow-hidden bg-[#05080c] bg-cover bg-center lg:h-auto"
         >
           <AnimatePresence>
-            <motion.video
+            <motion.div
               key={s.video}
-              src={s.video}
-              ref={(el: HTMLVideoElement | null) => {
-                // Some mobile browsers (data saver / low power) block autoplay: try, and keep the poster if refused.
-                if (el) el.play?.().catch(() => {})
-              }}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden="true"
               // naya footage neeche se upar "wipe" hota hai, purana uske neeche rehta hai
-              initial={reduced ? { opacity: 0 } : { opacity: 0.9, clipPath: 'inset(100% 0% 0% 0%)' }}
-              animate={{ opacity: 0.9, clipPath: 'inset(0% 0% 0% 0%)' }}
+              initial={reduced ? { opacity: 0 } : { opacity: 1, clipPath: 'inset(100% 0% 0% 0%)' }}
+              animate={{ opacity: 1, clipPath: 'inset(0% 0% 0% 0%)' }}
               exit={{ opacity: 0, transition: { duration: 0.2, delay: reduced ? 0 : 1.1 } }}
               transition={{ duration: reduced ? 0.6 : 1.1, ease: [0.76, 0, 0.24, 1] }}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+              className="absolute inset-0"
+            >
+              <SmartVideo src={s.video} opacity={0.9} onReady={() => setReady(true)} />
+            </motion.div>
           </AnimatePresence>
 
           {/* agla video peeche se buffer ho jaata hai: transition mein atkta nahi */}
