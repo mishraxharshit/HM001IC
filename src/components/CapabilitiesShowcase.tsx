@@ -142,10 +142,10 @@ export default function CapabilitiesShowcase() {
 
                 <p className="text-neutral-600 mb-6 leading-relaxed">{capability.description}</p>
 
-                <dl className="grid grid-cols-3 gap-4 pt-6 border-t border-neutral-200">
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-5 pt-6 border-t border-neutral-200 sm:grid-cols-3">
                   {capability.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <dd className="text-2xl font-light text-neutral-900 mb-1">{stat.value}</dd>
+                    <div key={stat.label} className="min-w-0">
+                      <dd className="text-xl font-light text-neutral-900 mb-1 break-words sm:text-2xl">{stat.value}</dd>
                       <dt className="text-xs text-neutral-500 uppercase tracking-wider">
                         {stat.label}
                       </dt>

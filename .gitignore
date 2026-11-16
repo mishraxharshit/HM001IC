@@ -2,4 +2,9 @@ venv/
 node_modules/
 .env
 .next/
+# build output (Vercel builds it itself) - never commit
 out/
+*.tsbuildinfo
+# raw/unoptimized source videos
+*.mov
+*.raw.mp4
