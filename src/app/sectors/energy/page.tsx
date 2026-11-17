@@ -1,6 +1,6 @@
 import Link from 'next/link'
+import PageHero from '@/components/PageHero'
 import EngineeringBand from '@/components/EngineeringBand'
-import HeroMedia from '@/components/HeroMedia'
 import Section from '@/components/Section'
 
 export const metadata = {
@@ -78,23 +78,16 @@ export default function EnergyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="isolate relative pt-32 pb-24 bg-[#05080c] overflow-hidden text-center">
-<HeroMedia video="/media/field.mp4" poster="/media/field.jpg" dim={0.5} />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
-        <div className="section-container relative z-10 max-w-3xl mx-auto">
-          <p className="text-xs font-bold tracking-[0.3em] text-red-600 uppercase mb-6">Infrastructures énergétiques</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-            Protéger les <em className=" font-normal italic text-neutral-400">infrastructures critiques</em>
-          </h1>
-          <p className="text-lg text-neutral-400 leading-relaxed mb-10">
-            Les actifs énergétiques sont les cibles prioritaires de la guerre hybride du XXIe siècle. USH fournit un renseignement et une protection physique intégrés pour les installations qui alimentent les nations et les économies.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">Demander une évaluation de sécurité</Link>
-            <Link href="/divisions/fortress" className="btn-secondary">Fortress Defense →</Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Infrastructures énergétiques"
+      title={<>Protéger les <span className="text-[#9db0c4]">infrastructures critiques</span></>}
+      intro="Les actifs énergétiques sont les cibles prioritaires de la guerre hybride du XXIe siècle. USH fournit un renseignement et une protection physique intégrés pour les installations qui alimentent les nations et les économies."
+      video="/media/field.mp4"
+      poster="/media/field.jpg"
+    >
+      <Link href="/contact" className="bg-white px-8 py-4 text-xs font-bold uppercase tracking-widest text-black transition hover:bg-neutral-300">Demander une évaluation de sécurité</Link>
+      <Link href="/divisions/fortress" className="border border-white/50 px-8 py-4 text-xs font-bold uppercase tracking-widest transition hover:bg-white hover:text-black">Fortress Defense →</Link>
+    </PageHero>
 <EngineeringBand variant="grid" eyebrow="Infrastructures énergétiques" title="Protéger l’énergie critique." />
 
       {/* Assets Grid */}

@@ -80,7 +80,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'La Division Ressources stratégiques a conclu un accord d’enlèvement à long terme portant sur des terres rares critiques, essentielles aux chaînes d’approvisionnement européennes de défense et d’énergies propres.',
     readTime: '3 min de lecture',
     featured: false,
-    image: '/photos/p1.jpg',
+    image: '/photos/trading/iron-ore.jpg',
     author: 'Eric C.S.',
     authorRole: 'Directeur des opérations (COO)',
     body: [
@@ -103,7 +103,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'À l’issue d’un appel d’offres concurrentiel, USH s’est vu attribuer un contrat pluriannuel de résilience des réseaux et de protection cyber-physique au profit d’un grand gestionnaire de réseau de transport d’énergie d’Europe du Sud.',
     readTime: '3 min de lecture',
     featured: false,
-    image: '/photos/p2.jpg',
+    image: '/photos/energy/blue-dusk-refinery.jpg',
     author: 'WBZ',
     authorRole: 'Président et fondateur',
     body: [
@@ -126,7 +126,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'USH a publié un document de cadre ESG complet présentant les objectifs environnementaux, les standards de gouvernance et les repères d’engagement communautaire de l’ensemble des divisions.',
     readTime: '6 min de lecture',
     featured: false,
-    image: '/photos/p5.jpg',
+    image: '/photos/trading/harvest-aerial.jpg',
     author: 'WBZ',
     authorRole: 'Président et fondateur',
     body: [
@@ -174,7 +174,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'En partenariat avec des clients souverains, la division Logistique a livré une évaluation complète des menaces et des vulnérabilités sur trois corridors stratégiques prioritaires.',
     readTime: '3 min de lecture',
     featured: false,
-    image: '/media/helmet.jpg',
+    image: '/photos/energy/lng-tanker.jpg',
     author: 'Eric C.S.',
     authorRole: 'Directeur des opérations (COO)',
     body: [
@@ -242,7 +242,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'La Division Ressources stratégiques d’USH a obtenu la certification de management environnemental ISO 14001 sur un deuxième site opérationnel, en avance sur le calendrier.',
     readTime: '3 min de lecture',
     featured: false,
-    image: '/photos/p3.jpg',
+    image: '/photos/trading/mine-carts.jpg',
     author: 'Eric C.S.',
     authorRole: 'Directeur des opérations (COO)',
     body: [
@@ -288,7 +288,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'Le déploiement pilote réussi d’un micro-réseau hybride a réduit les coûts énergétiques de 38 % et les émissions de carbone de 45 % sur un site minier isolé.',
     readTime: '4 min de lecture',
     featured: false,
-    image: '/photos/p2.jpg',
+    image: '/photos/trading/coal-stacker.jpg',
     author: 'Harshit Mishra',
     authorRole: 'Directeur de la technologie (CTO)',
     body: [
@@ -334,7 +334,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'Un pilote de 12 mois appliquant les données de menace de Fractalysium à la planification logistique a démontré une réduction de 62 % des incidents de sécurité de convois sur deux corridors à haut risque.',
     readTime: '5 min de lecture',
     featured: false,
-    image: '/photos/p4.jpg',
+    image: '/photos/energy/dusk-trucks.jpg',
     author: 'Eric C.S.',
     authorRole: 'Directeur des opérations (COO)',
     body: [

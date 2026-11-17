@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero, { Eyebrow, wrap } from '@/components/PageHero'
-import { CHAIRMAN, EXECUTIVES, ADVISORS } from '@/lib/leadership'
+import { CHAIRMAN, EXECUTIVES, DIRECTORS, ADVISORS } from '@/lib/leadership'
 
 export const metadata: Metadata = {
   title: 'Direction | USH Industries',
@@ -59,29 +59,40 @@ export default function LeadershipPage() {
                   <h3 className="text-2xl font-semibold tracking-tight">{x.name}</h3>
                   <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#2b4f9c]">{x.title}</p>
                   <p className="mt-1 text-sm text-neutral-500">{x.expertise}</p>
-                  <p className="mt-4 leading-relaxed text-neutral-600">{x.background}</p>
-                  <ul className="mt-5 space-y-2 border-t border-neutral-200 pt-5">
-                  </ul>
                 </div>
               </li>
             ))}
+          </ul>
+
+          <p className="mt-20 text-[11px] font-semibold uppercase tracking-[0.25em] text-neutral-500">Direction</p>
+          <ul className="mt-6 grid gap-6 md:grid-cols-3">
+            {DIRECTORS.map((d) => {
+              const initials = d.name.split(' ').map((w) => w[0]).slice(0, 2).join('')
+              return (
+                <li key={d.name} className="border border-neutral-200 bg-white p-8 transition-colors duration-300 hover:border-[#05080c]">
+                  <div aria-hidden="true" className="flex h-16 w-16 items-center justify-center bg-[#0a1628] text-lg font-semibold text-white">{initials}</div>
+                  <h3 className="mt-8 text-xl font-semibold tracking-tight">{d.name}</h3>
+                  <p className="mt-1 text-sm text-neutral-600">{d.title}</p>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </section>
 
       {/* Advisors */}
-      <section className="py-24 md:py-32">
+      <section className="bg-neutral-50 py-24 md:py-32">
         <div className={wrap}>
           <Eyebrow>Comité consultatif stratégique</Eyebrow>
-          <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {ADVISORS.map((a) => (
-              <li key={a.name} className="group flex min-w-0 items-center gap-5 border border-neutral-200 p-5">
-                <div className="w-24 shrink-0"><Portrait src={a.image} name={a.name} ratio="aspect-square" /></div>
-                <div className="min-w-0">
-                  <h3 className="text-lg font-semibold tracking-tight">{a.name}</h3>
-                  <p className="text-sm text-neutral-600">{a.role}</p>
-                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-400">{a.expertise}</p>
-                </div>
+          <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">Des experts indépendants, six domaines de conseil.</h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">Le comité conseille la direction sur la stratégie et la gouvernance. Par mesure de sécurité opérationnelle, l’identité de ses membres reste confidentielle.</p>
+          <ul className="mt-12 grid gap-px border border-neutral-200 bg-neutral-200 md:grid-cols-2 lg:grid-cols-3">
+            {ADVISORS.map((a, i) => (
+              <li key={a.domain} className="group flex min-w-0 flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#05080c] hover:text-white md:p-10">
+                <span className="text-sm font-bold tracking-[0.25em] text-[#2b4f9c] transition-colors group-hover:text-[#9db0c4]">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-6 text-2xl font-semibold leading-tight tracking-tight">{a.name ?? a.domain}</h3>
+                {a.name && <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400 group-hover:text-neutral-400">{a.domain}</p>}
+                <p className="mt-4 text-sm leading-relaxed text-neutral-600 transition-colors group-hover:text-neutral-300">{a.mandate}</p>
               </li>
             ))}
           </ul>

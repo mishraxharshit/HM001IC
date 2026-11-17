@@ -1,9 +1,9 @@
 'use client'
 
+import PageHero from '@/components/PageHero'
 import Link from 'next/link'
 import FilmBand from '@/components/FilmBand'
-import HeroMedia from '@/components/HeroMedia'
-import Section from '@/components/Section'
+import { wrap, Eyebrow } from '@/components/PageHero'
 
 const TECH_PILLARS = [
   {
@@ -55,97 +55,102 @@ export default function TechnologyPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="isolate relative pt-32 pb-20 bg-[#05080c] overflow-hidden">
-<HeroMedia video="/media/forge.mp4" poster="/media/forge.jpg" dim={0.5} />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#404040_1px,transparent_1px),linear-gradient(to_bottom,#404040_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.4em] text-red-700 mb-4 block">
-            Technologie et R&D
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light text-white mb-8 tracking-tight">
-            Concevoir la <span className="italic text-neutral-400">souveraineté</span>
-          </h1>
-          <p className="text-xl text-neutral-400 font-light leading-relaxed max-w-3xl mx-auto">
-            USH Industries développe des technologies à double usage, à la croisée de la défense, du renseignement et de la sécurité des ressources, conçues pour une ère de compétition stratégique.
-          </p>
+      <PageHero
+      eyebrow="Technologie et R&D"
+      title={<>Concevoir la <span className="text-[#9db0c4]">souveraineté</span></>}
+      intro="USH Industries développe des technologies à double usage, à la croisée de la défense, du renseignement et de la sécurité des ressources, conçues pour une ère de compétition stratégique."
+      video="/media/forge.mp4"
+      poster="/media/forge.jpg"
+    />
+
+
+      {/* Capability index */}
+      <section className="py-24 md:py-32">
+        <div className={`${wrap} grid gap-14 lg:grid-cols-[4fr_8fr] lg:gap-20`}>
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Eyebrow>Piliers technologiques</Eyebrow>
+            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">Six capacités, une seule plateforme.</h2>
+            <p className="mt-6 max-w-sm leading-relaxed text-neutral-600">Chaque pilier est conçu pour fonctionner seul, et gagne en puissance lorsqu’il est relié aux cinq autres.</p>
+          </div>
+          <ol className="border-t border-neutral-900">
+            {TECH_PILLARS.map((pillar, i) => (
+              <li key={pillar.title} className="group grid gap-4 border-b border-neutral-200 py-9 transition-colors duration-300 hover:bg-neutral-50 sm:grid-cols-[4rem_1fr] sm:px-4 md:py-10">
+                <span className="text-sm font-bold tracking-[0.25em] text-[#2b4f9c]">{String(i + 1).padStart(2, '0')}</span>
+                <div className="min-w-0">
+                  <h3 className="text-2xl font-semibold leading-tight tracking-tight transition-transform duration-300 group-hover:translate-x-1">{pillar.title}</h3>
+                  <p className="mt-4 max-w-2xl leading-relaxed text-neutral-600">{pillar.desc}</p>
+                  <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                    {pillar.tags.map((tag) => (
+                      <li key={tag} className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                        <span aria-hidden className="h-1 w-1 bg-[#2b4f9c]" />{tag}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
+      <FilmBand video="/media/tra.mp4" eyebrow="Technologie et R&D" title="Conçu, puis éprouvé." />
 
-      {/* Technology Pillars */}
-      <Section title="Piliers technologiques" subtitle="Un socle de capacités intégrées">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {TECH_PILLARS.map((pillar) => (
-            <div key={pillar.title} className="group border border-neutral-100 p-8 hover:shadow-2xl hover:border-neutral-900 transition-all duration-500">
-              <div className="w-14 h-14 bg-[#05080c] flex items-center justify-center mb-6 group-hover:bg-red-800 transition-colors">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={pillar.icon} />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-3">{pillar.title}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed mb-6">{pillar.desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {pillar.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] font-bold uppercase tracking-widest bg-neutral-100 text-neutral-500 px-3 py-1">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+      {/* R&D programmes */}
+      <section className="bg-[#05080c] py-24 text-white md:py-32">
+        <div className={wrap}>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <Eyebrow dark>Programmes de R&D</Eyebrow>
+              <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">Quatre programmes, du laboratoire au terrain.</h2>
             </div>
-          ))}
-        </div>
-      </Section>
-<FilmBand video="/media/tra.mp4" eyebrow="Technologie et R&D" title="Conçu, puis éprouvé." />
-      {/* R&D Programs */}
-      <Section background="dark" title="Programmes de R&D actifs" subtitle="Aperçu des projets classifiés">
-        <div className="max-w-4xl mx-auto space-y-4">
-          {RD_PROGRAMS.map((prog) => (
-            <div key={prog.code} className="bg-neutral-800 border border-neutral-700 p-6 flex flex-col md:flex-row md:items-center gap-4 hover:border-neutral-500 transition-colors">
-              <div className="shrink-0">
-                <div className="text-[10px] font-black text-red-700 tracking-widest">{prog.code}</div>
-                <div className="text-white font-bold mt-1">{prog.name}</div>
-              </div>
-              <div className="flex-1 md:border-l md:border-neutral-700 md:pl-6">
-                <p className="text-neutral-400 text-sm">{prog.desc}</p>
-              </div>
-              <div className="shrink-0">
-                <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 ${prog.status === 'Actif' ? 'bg-green-900 text-green-400' : 'bg-neutral-700 text-neutral-400'}`}>
-                  {prog.status}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-neutral-600 text-xs mt-8 uppercase tracking-widest">D’autres programmes classifiés ne sont pas listés. Habilitation de sécurité requise.</p>
-      </Section>
-
-      {/* Fractalysium CTA */}
-      <section className="py-24 bg-neutral-50 border-t border-neutral-200">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-[10px] font-black text-red-700 uppercase tracking-[0.3em] block mb-4">Division Renseignement</span>
-          <h2 className="text-4xl font-light text-neutral-900 mb-6">Propulsé par Fractalysium</h2>
-          <p className="text-neutral-500 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-            Notre plateforme dédiée de renseignement par IA fournit une analyse géospatiale des menaces en temps réel, de la modélisation prédictive et du conseil stratégique, accessibles aux clients souverains et aux partenaires qualifiés.
-          </p>
-          <a
-            href="https://fractalysium.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block border border-neutral-900 text-neutral-900 px-10 py-4 text-xs font-bold uppercase tracking-[0.3em] hover:bg-[#05080c] hover:text-white transition-all duration-300"
-          >
-            Visiter Fractalysium →
-          </a>
+            <p className="max-w-xs text-sm leading-relaxed text-neutral-400">Aperçu des projets non classifiés. Les autres programmes ne sont pas listés.</p>
+          </div>
+          <ul className="mt-14 grid gap-px bg-white/10 md:grid-cols-2">
+            {RD_PROGRAMS.map((prog) => {
+              const live = prog.status === 'Actif'
+              return (
+                <li key={prog.code} className="group flex min-w-0 flex-col bg-[#05080c] p-8 transition-colors duration-300 hover:bg-[#0b1220] md:p-10">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-xs font-bold tracking-[0.25em] text-[#9db0c4]">{prog.code}</span>
+                    <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-300">
+                      <span aria-hidden className={`h-2 w-2 rounded-full ${live ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                      {prog.status}
+                    </span>
+                  </div>
+                  <h3 className="mt-10 text-3xl font-semibold tracking-tight">{prog.name.replace('Project ', '')}</h3>
+                  <p className="mt-4 max-w-md leading-relaxed text-neutral-400">{prog.desc}</p>
+                  <span aria-hidden className="mt-8 h-px w-10 bg-[#2b4f9c] transition-all duration-500 group-hover:w-24" />
+                </li>
+              )
+            })}
+          </ul>
+          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-neutral-500">Habilitation de sécurité requise pour les programmes classifiés.</p>
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="py-24 bg-[#05080c] text-center border-t border-neutral-800">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="text-3xl text-white font-light mb-6 tracking-wide">Technology Partnerships</h2>
-          <p className="text-neutral-500 mb-10 font-light">Interested in co-development programs, licensing, or sovereign technology access?</p>
-          <Link href="/contact" className="inline-block border border-white text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300">
-            Initiate Discussion
-          </Link>
+      {/* Fractalysium */}
+      <section className="border-b border-neutral-200 bg-neutral-50 py-24 md:py-28">
+        <div className={`${wrap} grid items-center gap-10 lg:grid-cols-[7fr_5fr] lg:gap-20`}>
+          <div>
+            <Eyebrow>Division Renseignement</Eyebrow>
+            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">Propulsé par Fractalysium.</h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-600">Notre plateforme de renseignement par IA fournit une analyse géospatiale des menaces en temps réel, de la modélisation prédictive et du conseil stratégique, pour les clients souverains et les partenaires qualifiés.</p>
+          </div>
+          <div className="flex flex-col gap-4 lg:items-end">
+            <a href="https://fractalysium.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 bg-[#05080c] px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-colors hover:bg-[#2b4f9c]">Visiter Fractalysium <span aria-hidden>↗</span></a>
+            <Link href="/divisions/fractalysium" className="px-2 py-2 text-sm text-neutral-600 underline-offset-4 hover:text-black hover:underline">Voir la division →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnerships */}
+      <section className="bg-[#05080c] py-24 text-white">
+        <div className={`${wrap} flex flex-wrap items-center justify-between gap-8`}>
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-semibold tracking-[-0.03em] md:text-5xl">Partenariats technologiques</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-400">Programmes de co-développement, licences ou accès à des technologies souveraines : parlons-en.</p>
+          </div>
+          <Link href="/contact" className="bg-white px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-[#05080c] transition-colors hover:bg-neutral-300">Engager la discussion</Link>
         </div>
       </section>
     </div>

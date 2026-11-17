@@ -1,7 +1,7 @@
 'use client'
 
+import PageHero from '@/components/PageHero'
 import Link from 'next/link'
-import HeroMedia from '@/components/HeroMedia'
 import Section from '@/components/Section'
 
 const FRAMEWORKS = [
@@ -16,16 +16,12 @@ const FRAMEWORKS = [
 export default function CompliancePage() {
   return (
     <div className="bg-white">
-      <section className="isolate relative pt-32 pb-16 bg-[#05080c]">
-<HeroMedia poster="/photos/p4.jpg" dim={0.3} />
-        <div className="container mx-auto px-6 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.4em] text-neutral-500 mb-4 block">Gouvernance</span>
-          <h1 className="text-4xl lg:text-6xl font-light text-white mb-6 tracking-tight">Conformité</h1>
-          <p className="text-neutral-400 font-light max-w-2xl mx-auto">
-            L’éthique des opérations et la conformité réglementaire ne sont pas des contraintes : elles sont le fondement de notre crédibilité et de notre légitimité à opérer sur le long terme.
-          </p>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Gouvernance"
+      title={<>Conformité</>}
+      intro="L’éthique des opérations et la conformité réglementaire ne sont pas des contraintes : elles sont le fondement de notre crédibilité et de notre légitimité à opérer sur le long terme."
+      poster="/photos/p4.jpg"
+    />
 
       {/* Frameworks */}
       <Section title="Cadres réglementaires" subtitle="Les standards qui encadrent nos activités">

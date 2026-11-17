@@ -1,19 +1,17 @@
 'use client'
 
+import PageHero from '@/components/PageHero'
 import Link from 'next/link'
-import HeroMedia from '@/components/HeroMedia'
 
 export default function PrivacyPage() {
   return (
     <div className="bg-white">
-      <section className="isolate relative pt-32 pb-16 bg-[#05080c]">
-<HeroMedia poster="/photos/p1.jpg" dim={0.3} />
-        <div className="container mx-auto px-6 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.4em] text-neutral-500 mb-4 block">Mentions</span>
-          <h1 className="text-4xl lg:text-6xl font-light text-white mb-6 tracking-tight">Politique de confidentialité</h1>
-          <p className="text-neutral-400 font-light max-w-xl mx-auto">Dernière mise à jour : janvier 2025</p>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Mentions"
+      title={<>Politique de confidentialité</>}
+      intro="Dernière mise à jour : janvier 2025"
+      poster="/photos/p1.jpg"
+    />
 
       <div className="max-w-3xl mx-auto px-6 py-20">
         <div className="prose prose-neutral max-w-none space-y-10 text-neutral-700 leading-relaxed">

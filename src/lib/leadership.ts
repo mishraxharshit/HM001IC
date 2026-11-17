@@ -30,13 +30,26 @@ export const EXECUTIVES = [
     title: 'Directeur de la défense',
     expertise: 'Ingénierie balistique, défense',
     background:
-      'Dirige Fortress Defense Systems, qui couvre la recherche, l’ingénierie et la fabrication de protections balistiques. Ingénieur militaire de formation, avec plus de 20 ans d’expérience dans les programmes de blindage et de protection.',
+      'Dirige Fortress Defense Systems, entité qui englobe la recherche, l’ingénierie et la fabrication de solutions de protection balistique. Ingénieur militaire de formation, avec plus de 20 ans d’expérience dans les programmes de blindage et de protection.',
     image: '/team/2.jpg',
   },
 ]
 
-export const ADVISORS = [
-  { name: 'Dr. Arjun Varma', role: 'Conseiller en renseignement stratégique', expertise: 'Analyse des risques géopolitiques', image: '/team/6.jpg' },
-  { name: 'Dr. Sarah Kessler', role: 'Conseillère en opérations de défense', expertise: 'Cybersécurité et sécurité opérationnelle', image: '/team/3.jpg' },
-  { name: 'Marcus Thompson', role: 'Conseiller en politiques publiques', expertise: 'Relations gouvernementales et institutionnelles', image: '/team/5.jpg' },
+// Directors (placeholder names, edit freely). Shown as initials cards, no photo needed.
+export const DIRECTORS = [
+  { name: 'Isabelle Marchetti', title: 'Directrice des relations institutionnelles' },
+  { name: 'Camille Delaunay', title: 'Directrice de la conformité et de l’éthique' },
+  { name: 'Élodie Varennes', title: 'Directrice financière' },
+]
+
+// Advisory committee, shown by area of expertise.
+// The committee's identities are confidential (see the newsroom article on the committee), so no names or photos are published.
+// When you are ready to publish a REAL member, add  name: 'Prénom Nom'  to that entry and the card will show the name.
+export const ADVISORS: { domain: string; mandate: string; name?: string }[] = [
+  { domain: 'Renseignement stratégique', mandate: 'Éclaire l’analyse des risques géopolitiques et la lecture des menaces émergentes.' },
+  { domain: 'Ingénierie de défense', mandate: 'Conseille les choix techniques et les standards de qualification des systèmes de protection.' },
+  { domain: 'Géopolitique des ressources', mandate: 'Suit l’évolution des chaînes d’approvisionnement en minerais, en énergie et en matières premières.' },
+  { domain: 'Finance et investissement', mandate: 'Accompagne la structuration des projets, du financement du négoce et des relations investisseurs.' },
+  { domain: 'Droit international et conformité', mandate: 'Veille au respect des sanctions, des régimes de contrôle et des normes anticorruption.' },
+  { domain: 'Politiques publiques et institutions', mandate: 'Relie le Groupe aux institutions et aux programmes publics européens et internationaux.' },
 ]
