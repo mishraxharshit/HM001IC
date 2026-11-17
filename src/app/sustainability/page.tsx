@@ -1,9 +1,9 @@
 'use client'
 
+import PageHero from '@/components/PageHero'
 import Link from 'next/link'
 import EngineeringBand from '@/components/EngineeringBand'
-import HeroMedia from '@/components/HeroMedia'
-import Section from '@/components/Section'
+import { wrap, Eyebrow } from '@/components/PageHero'
 
 const PILLARS = [
   {
@@ -37,80 +37,67 @@ export default function SustainabilityPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="isolate relative pt-32 pb-20 bg-[#05080c] overflow-hidden">
-<HeroMedia video="/media/walk.mp4" poster="/media/walk.jpg" dim={0.5} />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#404040_1px,transparent_1px),linear-gradient(to_bottom,#404040_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.4em] text-green-500 mb-4 block">
-            Développement durable et ESG
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light text-white mb-8 tracking-tight">
-            Sécuriser l’avenir,{' '}
-            <span className="italic text-neutral-400">de façon responsable</span>
-          </h1>
-          <p className="text-xl text-neutral-400 font-light leading-relaxed max-w-3xl mx-auto">
-            Protéger les ressources stratégiques et les infrastructures critiques est indissociable de la protection de l’environnement et des sociétés dans lesquelles nous opérons. Le développement durable n’est pas une option : c’est l’intégrité opérationnelle.
-          </p>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Développement durable et ESG"
+      title={<>Sécuriser l’avenir,{' '} <span className="text-[#9db0c4]">de façon responsable</span></>}
+      intro="Protéger les ressources stratégiques et les infrastructures critiques est indissociable de la protection de l’environnement et des sociétés dans lesquelles nous opérons. Le développement durable n’est pas une option : c’est l’intégrité opérationnelle."
+      video="/media/walk.mp4"
+      poster="/media/walk.jpg"
+    />
 <EngineeringBand variant="flow" eyebrow="Développement durable" title="Sécuriser l’avenir." />
 
-      {/* ESG Pillars */}
-      <Section title="Notre cadre ESG" subtitle="Quatre piliers d’opérations responsables">
-        <div className="grid md:grid-cols-2 gap-8">
-          {PILLARS.map((pillar) => (
-            <div key={pillar.title} className="group border border-neutral-100 p-10 hover:shadow-2xl hover:border-neutral-900 transition-all duration-500">
-              <div className="w-14 h-14 bg-[#05080c] flex items-center justify-center mb-6 group-hover:bg-green-800 transition-colors">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={pillar.icon} />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">{pillar.title}</h3>
-              <p className="text-neutral-600 leading-relaxed text-sm mb-8">{pillar.desc}</p>
-              <div className="flex gap-6 pt-6 border-t border-neutral-100">
-                {pillar.metrics.map((m) => (
-                  <div key={m.label}>
-                    <div className="text-2xl font-black text-neutral-900">{m.value}</div>
-                    <div className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mt-1">{m.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+      {/* ESG framework */}
+      <section className="py-24 md:py-32">
+        <div className={wrap}>
+          <div className="max-w-3xl">
+            <Eyebrow>Notre cadre ESG</Eyebrow>
+            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">Quatre engagements, chacun mesuré.</h2>
+          </div>
+          <ol className="mt-14 border-t border-neutral-900">
+            {PILLARS.map((pillar, i) => (
+              <li key={pillar.title} className="grid gap-8 border-b border-neutral-200 py-12 md:py-14 lg:grid-cols-[5rem_5fr_4fr] lg:gap-12">
+                <span className="text-sm font-bold tracking-[0.25em] text-[#2b4f9c]">{String(i + 1).padStart(2, '0')}</span>
+                <div className="min-w-0">
+                  <h3 className="text-2xl font-semibold leading-tight tracking-tight md:text-3xl">{pillar.title}</h3>
+                  <p className="mt-4 max-w-xl leading-relaxed text-neutral-600">{pillar.desc}</p>
+                </div>
+                <dl className="grid grid-cols-2 gap-6 self-start">
+                  {pillar.metrics.map((m) => (
+                    <div key={m.label} className="border-l-2 border-[#2b4f9c] pl-4">
+                      <dd className="text-4xl font-semibold tracking-tight md:text-5xl">{m.value}</dd>
+                      <dt className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">{m.label}</dt>
+                    </div>
+                  ))}
+                </dl>
+              </li>
+            ))}
+          </ol>
         </div>
-      </Section>
+      </section>
+
       {/* Statement */}
-      <section className="border-t border-neutral-200 bg-neutral-50 py-28">
-  <div className="mx-auto max-w-5xl px-6">
-    <figure className="mx-auto max-w-4xl text-center">
-      <span
-        aria-hidden="true"
-        className="mb-6 block text-7xl font-semibold leading-none text-[#2b4f9c]"
-      >
-        &ldquo;
-      </span>
-
-      <blockquote className="text-3xl font-medium leading-[1.2] tracking-[-0.025em] text-[#05080c] [text-wrap:balance] md:text-5xl">
-        La véritable sécurité stratégique consiste à laisser les environnements, les communautés et les institutions plus solides que nous ne les avons trouvés.
-      </blockquote>
-
-      <div className="mx-auto mt-10 h-px w-16 bg-[#2b4f9c]" />
-
-      <figcaption className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
-        Direction d’USH Industries
-      </figcaption>
-    </figure>
-  </div>
-</section>
+      <section className="bg-[#05080c] py-24 text-white md:py-32">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[3fr_9fr]`}>
+          <Eyebrow dark>Notre position</Eyebrow>
+          <figure>
+            <blockquote className="text-3xl font-medium leading-[1.15] tracking-[-0.025em] [text-wrap:balance] md:text-5xl">
+              La véritable sécurité stratégique consiste à laisser les environnements, les communautés et les institutions plus solides que nous ne les avons trouvés.
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.28em] text-neutral-400">
+              <span aria-hidden className="h-px w-12 bg-[#2b4f9c]" />Direction d’USH Industries
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#05080c] text-center border-t border-neutral-800">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="text-3xl text-white font-light mb-6 tracking-wide">Reporting ESG et partenariats</h2>
-          <p className="text-neutral-500 mb-10 font-light">Pour toute demande de données ESG ou discussion de partenariat en matière de développement durable.</p>
-          <Link href="/contact" className="inline-block border border-white text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300">
-            Prendre contact
-          </Link>
+      <section className="bg-neutral-50 py-24">
+        <div className={`${wrap} flex flex-wrap items-center justify-between gap-8`}>
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-semibold tracking-[-0.03em] md:text-5xl">Reporting ESG et partenariats</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600">Pour toute demande de données ESG ou discussion de partenariat en matière de développement durable.</p>
+          </div>
+          <Link href="/contact" className="bg-[#05080c] px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-colors hover:bg-[#2b4f9c]">Prendre contact</Link>
         </div>
       </section>
     </div>

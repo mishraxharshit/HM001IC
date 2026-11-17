@@ -9,7 +9,7 @@ export const Eyebrow = ({ children, dark = false }: { children: ReactNode; dark?
 
 // Shared enterprise-style page hero: media backdrop, eyebrow, headline, intro and optional key figures.
 export default function PageHero({
-  eyebrow, title, intro, video, poster, facts,
+  eyebrow, title, intro, video, poster, facts, children,
 }: {
   eyebrow: string
   title: ReactNode
@@ -17,6 +17,7 @@ export default function PageHero({
   video?: string
   poster: string
   facts?: [string, string][]
+  children?: ReactNode
 }) {
   return (
     <section className={`relative isolate overflow-hidden bg-[#05080c] pt-40 text-white ${facts ? '' : 'pb-24'}`}>
@@ -26,6 +27,7 @@ export default function PageHero({
         <Eyebrow dark>{eyebrow}</Eyebrow>
         <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl md:text-7xl lg:text-[6rem]">{title}</h1>
         <p className="mt-8 max-w-2xl text-xl leading-relaxed text-neutral-300">{intro}</p>
+        {children && <div className="mt-10 flex flex-wrap gap-4">{children}</div>}
         {facts && (
           <dl className="mt-16 grid grid-cols-2 gap-x-6 border-t border-white/20 md:grid-cols-4 md:gap-x-0">
             {facts.map(([v, l], i) => (

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import HeroMedia from '@/components/HeroMedia'
+import PageHero from '@/components/PageHero'
 import Section from '@/components/Section'
 import CopyEmailButton from '@/components/CopyEmailButton'
 
@@ -22,26 +22,12 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="isolate relative pt-32 pb-20 bg-[#05080c]">
-<HeroMedia poster="/photos/p6.jpg" dim={0.35} />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(to_right,#404040_1px,transparent_1px),linear-gradient(to_bottom,#404040_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10"
-        />
-        <div className="section-container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-4 block">
-              Prendre contact
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6">
-              Contacter USH Industries
-            </h1>
-            <p className="text-xl text-neutral-300 font-light">
-              Consultation confidentielle pour vos besoins en sécurité stratégique et en protection des ressources
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Prendre contact"
+      title={<>Contacter USH Industries</>}
+      intro="Consultation confidentielle pour vos besoins en sécurité stratégique et en protection des ressources"
+      poster="/photos/p6.jpg"
+    />
 
       {/* Direct Contact */}
       <Section background="default">

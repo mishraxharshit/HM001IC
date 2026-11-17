@@ -1,6 +1,6 @@
 import Link from 'next/link'
+import PageHero from '@/components/PageHero'
 import EngineeringBand from '@/components/EngineeringBand'
-import HeroMedia from '@/components/HeroMedia'
 import Section from '@/components/Section'
 
 export const metadata = {
@@ -64,23 +64,16 @@ export default function MiningPage() {
   return (
     <>
       {/* Hero */}
-      <section className="isolate relative pt-32 pb-24 bg-[#05080c] overflow-hidden text-center">
-<HeroMedia video="/media/forge.mp4" poster="/media/forge.jpg" dim={0.5} />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
-        <div className="section-container relative z-10 max-w-3xl mx-auto">
-          <p className="text-xs font-bold tracking-[0.3em] text-red-600 uppercase mb-6">Mines et ressources critiques</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-            Sécuriser les ressources <em className=" font-normal italic text-neutral-400">à la source</em>
-          </h1>
-          <p className="text-lg text-neutral-400 leading-relaxed mb-10">
-            Terres rares, uranium, lithium, cobalt : les matériaux dont dépendent les systèmes de défense modernes, les réseaux énergétiques et les économies industrielles. USH les sécurise à la source, avec un renseignement et une protection physique intégrés dès le premier jour.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">Discuter de vos besoins</Link>
-            <Link href="/sustainability" className="btn-secondary">Nos standards ESG →</Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+      eyebrow="Mines et ressources critiques"
+      title={<>Sécuriser les ressources <span className="text-[#9db0c4]">à la source</span></>}
+      intro="Terres rares, uranium, lithium, cobalt : les matériaux dont dépendent les systèmes de défense modernes, les réseaux énergétiques et les économies industrielles. USH les sécurise à la source, avec un renseignement et une protection physique intégrés dès le premier jour."
+      video="/media/forge.mp4"
+      poster="/media/forge.jpg"
+    >
+      <Link href="/contact" className="bg-white px-8 py-4 text-xs font-bold uppercase tracking-widest text-black transition hover:bg-neutral-300">Discuter de vos besoins</Link>
+      <Link href="/sustainability" className="border border-white/50 px-8 py-4 text-xs font-bold uppercase tracking-widest transition hover:bg-white hover:text-black">Nos standards ESG →</Link>
+    </PageHero>
 <EngineeringBand variant="gears" eyebrow="Mines et ressources" title="Du minerai à la spécification." />
 
       {/* Materials & Capabilities */}

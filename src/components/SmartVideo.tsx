@@ -27,7 +27,8 @@ export default function SmartVideo({
 
   useEffect(() => {
     const c = (navigator as any).connection
-    if (c && (c.saveData || /(^|-)2g/.test(c.effectiveType || ''))) { setAllowed(false); ready() }
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion || (c && (c.saveData || /(^|-)2g/.test(c.effectiveType || '')))) { setAllowed(false); ready() }
   }, [])
 
   useEffect(() => {

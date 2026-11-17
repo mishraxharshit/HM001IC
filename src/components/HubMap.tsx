@@ -39,7 +39,7 @@ export default function HubMap({ regions, activeId }: { regions: MapRegion[]; ac
         minZoom: 2,
         scrollWheelZoom: false, // keeps page scrolling smooth; users zoom with +/- or ctrl-scroll
         worldCopyJump: true,
-        attributionControl: true,
+        attributionControl: false, // replaced below by a compact, prefix-free credit
       })
 
       // Default: OpenStreetMap's public tiles (no API key). To use a keyed provider such as MapTiler or
@@ -47,8 +47,17 @@ export default function HubMap({ regions, activeId }: { regions: MapRegion[]; ac
       const customUrl = process.env.NEXT_PUBLIC_MAP_TILE_URL
       L.tileLayer(customUrl || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
       }).addTo(map)
+
+      // Discreet credit: no Leaflet logo/flag, tiny text. The OpenStreetMap credit itself must stay (it is a licence condition).
+      if (!document.getElementById('ush-map-credit-css')) {
+        const st = document.createElement('style')
+        st.id = 'ush-map-credit-css'
+        st.textContent = '.leaflet-control-attribution{background:transparent!important;color:rgba(255,255,255,.35)!important;font-size:9px!important;line-height:1.2;padding:0 6px 4px!important}.leaflet-control-attribution a{color:rgba(255,255,255,.45)!important;text-decoration:none!important}.leaflet-control-attribution a:hover{color:#fff!important}'
+        document.head.appendChild(st)
+      }
+      L.control.attribution({ prefix: false, position: 'bottomright' }).addTo(map)
 
       const all = regions.flatMap((r) => r.markers.map((m) => ({ ...m, regionId: r.id })))
       const hq = all.find((m) => m.hq)

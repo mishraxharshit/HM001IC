@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import MediaHero from '@/components/MediaHero'
-import FilmBand from '@/components/FilmBand'
+import SmartVideo from '@/components/SmartVideo'
 
 // ── Design token  dark accent for white bg ──
 const A = '#111111'
@@ -508,8 +508,87 @@ function ApproachSection() {
 }
 
 // ════════════════════════════════════════════════════════
-//  TRADING DIVISIONS  white bg
+//  TRANSFORMATION : du minerai à la spécification (interactive, keyboard accessible)
 // ════════════════════════════════════════════════════════
+const STAGES = [
+  { n: '01', name: 'Extraction', title: 'Des sites vérifiés et protégés', body: 'Le minerai est extrait sur des sites partenaires, vérifiés avant tout enlèvement. Fortress Defense assure la protection des sites et des accès.', outputs: ['Sites vérifiés', 'Origine documentée', 'Accès protégés'], control: 'Vérification de l’origine et de la conformité du site' },
+  { n: '02', name: 'Concentration', title: 'Préparer le minerai près de la mine', body: 'Concassage, broyage et séparation donnent un concentré exploitable, au plus près de la mine, pour réduire les volumes à transporter.', outputs: ['Concentrés', 'Volumes réduits', 'Valorisation locale'], control: 'Échantillonnage de chaque lot' },
+  { n: '03', name: 'Transformation', title: 'Raffinage et affinage', body: 'Le concentré est transformé chez des partenaires en produits conformes aux spécifications industrielles : métaux, oxydes ou composés.', outputs: ['Métaux et oxydes', 'Partenaires de transformation', 'Rendements suivis'], control: 'Suivi du procédé et des rendements' },
+  { n: '04', name: 'Spécification', title: 'Une qualité confirmée par des tiers', body: 'Des laboratoires indépendants analysent chaque lot et confirment qu’il respecte le cahier des charges de l’acheteur avant l’expédition.', outputs: ['Certificats d’analyse', 'Rapport d’inspection', 'Lots tracés'], control: 'Analyse par un laboratoire indépendant' },
+  { n: '05', name: 'Livraison', title: 'Une expédition coordonnée', body: 'Transport, assurance et documents d’expédition sont coordonnés jusqu’à la livraison, avec la protection physique des convois et des stocks.', outputs: ['Logistique coordonnée', 'Assurance marchandise', 'Convois protégés'], control: 'Suivi jusqu’à la remise des documents' },
+]
+
+function TransformationSection() {
+  const [active, setActive] = useState(0)
+  const refs = useRef<(HTMLButtonElement | null)[]>([])
+  const st = STAGES[active]
+  const go = (i: number) => { const k = (i + STAGES.length) % STAGES.length; setActive(k); refs.current[k]?.focus() }
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); go(active + 1) }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1) }
+    if (e.key === 'Home') { e.preventDefault(); go(0) }
+    if (e.key === 'End') { e.preventDefault(); go(STAGES.length - 1) }
+  }
+  return (
+    <section className="relative isolate overflow-hidden bg-[#05080c] text-white">
+      <SmartVideo src="/media/forge.mp4" opacity={0.3} eager={false} />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#05080c] via-transparent to-[#05080c]" />
+      <div className="relative mx-auto max-w-[1360px] px-6 py-20 md:py-28 lg:px-14">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#9db0c4]">Transformation</p>
+        <h2 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
+          Du minerai à la <span className="text-[#9db0c4]">spécification.</span>
+        </h2>
+        <p className="mt-6 max-w-2xl text-lg text-neutral-300">Cinq étapes suivies et documentées. Choisissez une étape pour voir ce qui est livré et comment il est contrôlé.</p>
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+          {/* stages */}
+          <div role="tablist" aria-label="Étapes de transformation" aria-orientation="vertical" onKeyDown={onKey}
+            className="-mx-6 flex gap-2 overflow-x-auto px-6 pb-2 lg:mx-0 lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0 lg:pb-0">
+            {STAGES.map((x, i) => {
+              const on = i === active
+              return (
+                <button key={x.n} ref={(el) => { refs.current[i] = el }} role="tab" id={`stage-${x.n}`} aria-selected={on} aria-controls="stage-panel" tabIndex={on ? 0 : -1}
+                  onClick={() => setActive(i)}
+                  className={`group relative flex shrink-0 items-center gap-4 border px-5 py-4 text-left transition lg:border-0 lg:border-l-2 lg:py-5 ${on ? 'border-white bg-white text-black lg:border-l-white lg:bg-white/10 lg:text-white' : 'border-white/20 text-neutral-300 hover:border-white/50 lg:border-l-white/20 lg:hover:bg-white/5'}`}>
+                  <span className={`text-xs font-bold tracking-widest ${on ? 'text-black/60 lg:text-[#9db0c4]' : 'text-[#9db0c4]'}`}>{x.n}</span>
+                  <span className="text-base font-semibold lg:text-xl">{x.name}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* detail */}
+          <div id="stage-panel" role="tabpanel" aria-labelledby={`stage-${st.n}`} className="min-h-[360px] border border-white/15 bg-black/40 p-7 backdrop-blur-sm md:p-10">
+            <AnimatePresence mode="wait">
+              <motion.div key={st.n} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#9db0c4]">Étape {st.n} sur 05 · {st.name}</p>
+                <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight md:text-4xl">{st.title}</h3>
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-300">{st.body}</p>
+                <div className="mt-8 grid gap-6 border-t border-white/15 pt-6 sm:grid-cols-2">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">Ce qui est livré</p>
+                    <ul className="mt-3 space-y-2">{st.outputs.map((o) => (<li key={o} className="flex items-center gap-3 text-sm text-neutral-100"><span className="h-1.5 w-1.5 shrink-0 bg-[#9db0c4]" />{o}</li>))}</ul>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">Contrôle</p>
+                    <p className="mt-3 text-sm text-neutral-100">{st.control}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <button onClick={() => go(active + 1)} className="border border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest transition hover:bg-white hover:text-black">
+                {active === STAGES.length - 1 ? 'Revenir au début' : 'Étape suivante →'}
+              </button>
+              <Link href="/contact" className="bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-black transition hover:bg-neutral-300">Discuter d’un approvisionnement</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function TradingDivisionsSection() {
   return (
     <section id="divisions" className="bg-white py-16 md:py-28 px-4 md:px-8 lg:px-24" style={{ borderTop: '1px solid rgba(0,0,0,0.07)' }}>
@@ -837,8 +916,8 @@ export default function ResourcesPage() {
       <MediaHero slides={HERO_SLIDES.map((h, i) => ({ index: h.index, tag: h.tag, title: h.title, sub: h.sub, video: ['/media/sup.mp4', '/media/lance.mp4', '/media/field.mp4'][i], poster: h.image }))} cta={[{ label: 'Demander un échange', href: '/contact' }, { label: 'Pétrole, gaz et négoce', href: '#divisions' }, { label: 'Matériaux critiques', href: '#materials' }]} />
       <ChallengeSection />
       <ApproachSection />
-      <FilmBand video="/media/forge.mp4" poster="/media/forge.jpg" eyebrow="Transformation" title="Du minerai à la spécification." />
       <TradingDivisionsSection />
+      <TransformationSection />
       <MaterialsSection />
       <ServicesSection />
       <CtaSection />
