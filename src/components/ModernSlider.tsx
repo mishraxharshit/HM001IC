@@ -36,6 +36,26 @@ const slides: Slide[] = [
     video: "/media/lancement.mp4",
     poster: "/media/walk.jpg",
   },
+  {
+    category: "Pétrole et gaz",
+    title: "Sécuriser l’énergie des nations",
+    description:
+      "Pétrole brut, produits raffinés, GNL et gaz naturel : des flux d’hydrocarbures sécurisés, de la source jusqu’au terminal de livraison, avec des contreparties vérifiées et une protection physique des corridors critiques.",
+    cta: "Découvrir la division",
+    ctaLink: "/divisions/oil-gas",
+    video: "/media/energy/aerial-refinery.mp4",
+    poster: "/media/energy/aerial-refinery.jpg",
+  },
+  {
+    category: "Négoce multi-matières",
+    title: "Un guichet unique pour les matières premières",
+    description:
+      "Énergie, métaux, minerais et matières industrielles : un négoce physique adossé à la logistique, au financement et à la conformité, de l’origine jusqu’à la livraison.",
+    cta: "Découvrir la division",
+    ctaLink: "/divisions/multi-commodities",
+    video: "/media/trading/molten-pour.mp4",
+    poster: "/media/trading/molten-pour.jpg",
+  },
 ]
 
 export default function DefenseTerminalSlider() {
@@ -106,7 +126,7 @@ export default function DefenseTerminalSlider() {
         <button
           onClick={prevSlide}
           aria-label="Diapositive précédente"
-          className="p-4 border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-black transition-all"
+          className="p-4 text-white border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-black transition-all"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -115,7 +135,7 @@ export default function DefenseTerminalSlider() {
         <button
           onClick={nextSlide}
           aria-label="Diapositive suivante"
-          className="p-4 border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-black transition-all"
+          className="p-4 text-white border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-black transition-all"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
