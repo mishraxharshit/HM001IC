@@ -15,6 +15,7 @@ export const EXECUTIVES = [
     expertise: 'Chaîne d’approvisionnement, commerce international',
     background:
       'Responsable des opérations quotidiennes de l’ensemble des divisions, de la sécurité des sites et de la logistique jusqu’à la livraison aux partenaires. Dispose d’une solide expérience de la conduite de programmes complexes de ressources et de chaîne d’approvisionnement en zones à risque.',
+    scope: 'Toutes les divisions',
     image: '/team/4.jpg',
   },
   {
@@ -23,6 +24,7 @@ export const EXECUTIVES = [
     expertise: 'Architecte Logiciel, Recherche et Développement',
     background:
       'Dirige la stratégie technologique et la plateforme d intelligence Fractalysium. Se concentre sur la recherche appliquée et l apprentissage cognitif pour l\'évaluation prédictive des risques à destination des clients souverains et industriels.',
+    scope: 'Fractalysium · R&D',
     image: '/team/7.jpg',
   },
   {
@@ -30,16 +32,19 @@ export const EXECUTIVES = [
     title: 'Directeur de la défense',
     expertise: 'Ingénierie balistique, défense',
     background:
-      'Dirige Fortress Defense Systems, entité qui englobe la recherche, l’ingénierie et la fabrication de solutions de protection balistique. Ingénieur militaire de formation, avec plus de 20 ans d’expérience dans les programmes de blindage et de protection.',
+      'Dirige Fortress Defense Systems, qui couvre la recherche, l’ingénierie et la fabrication de protections balistiques. Ingénieur militaire de formation, avec plus de 20 ans d’expérience dans les programmes de blindage et de protection.',
+    scope: 'Fortress Defense Systems',
     image: '/team/2.jpg',
   },
 ]
 
-// Directors (placeholder names, edit freely). Shown as initials cards, no photo needed.
+// Directors (placeholder names, edit freely). Shown as rows with initials, no photo needed.
 export const DIRECTORS = [
-  { name: 'Isabelle Marchetti', title: 'Directrice des relations institutionnelles' },
-  { name: 'Camille Delaunay', title: 'Directrice de la conformité et de l’éthique' },
-  { name: 'Élodie Varennes', title: 'Directrice financière' },
+  { name: 'Isabelle Marchetti', title: 'Directrice des relations institutionnelles', scope: 'Institutions · Gouvernements' },
+  { name: 'Camille Delaunay', title: 'Directrice de la conformité et de l’éthique', scope: 'Conformité · Éthique' },
+  { name: 'Élodie Varennes', title: 'Directrice financière', scope: 'Finance · Trésorerie' },
+  { name: 'Antoine Rousseau', title: 'Directeur du négoce multi-matières', scope: 'Négoce multi-matières' },
+  { name: 'Julien Fabre', title: 'Directeur pétrole et gaz', scope: 'Pétrole et gaz' },
 ]
 
 // Advisory committee, shown by area of expertise.
